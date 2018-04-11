@@ -1,0 +1,20 @@
+{
+  "RestApiID": "restapiid",
+  "Account": "account",
+  "Stage": "stage",
+  "Region": "us-east-1",
+  "AuthorizerID": "authorizer"
+  "RequiredDomain":"example.com",
+  "LambdaRole":"arn:aws:iam::account:role/lambda_basic_execution",
+  "LambdaDeployRole":"arn:aws:iam::account:role/lambda_deployer",
+  "RemoteRoot":"https://other.example.com/",
+  "RemoteProfile":"remote",
+  "RemoteLambdaRole":"arn:aws:iam::otheraccount:role/lambda_basic_vpc_execution",
+  "RemoteVPC":"SubnetIds=subnet1,subnet2,SecurityGroupIds=sg1",
+  "S3Bucket":"bucketname",
+  "RemoteHTTP":"arn:aws:lambda:us-east-1:otheraccount:function:http-mole",
+  "RemoteSQL":"arn:aws:lambda:us-east-1:otheraccount:function:sqlTemplate",
+  "GoogleWebClientID":"gogglewebclientid",
+  "GoogleWebClientSecret":"googlewebclientsecret",
+  "ConnectionInfo":"encryptedconnectioninfo"
+}
