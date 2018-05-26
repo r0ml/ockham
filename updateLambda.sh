@@ -65,6 +65,12 @@ sql)
     VPC_CONFIG=`jq -r .RemoteVPC deploy.json`
     updateFunction sql sqlTemplate $ROLE $VPC_CONFIG
     ;;
+sql-mole)
+    export AWS_PROFILE=`jq -r .RemoteProfile deploy.json`
+    ROLE=`jq -r .RemoteLambdaRole deploy.json`
+    VPC_CONFIG=`jq -r .RemoteVPC deploy.json`
+    updateFunction sql-mole sql-mole $ROLE $VPC_CONFIG
+    ;;
 sql-exec)
     export AWS_PROFILE=`jq -r .RemoteProfile deploy.json`
     ROLE=`jq -r .RemoteLambdaRole deploy.json`

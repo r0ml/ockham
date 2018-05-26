@@ -75,7 +75,17 @@ func secret(secr string) string {
     HTTP headers.  Otherwise, I will not look at them?   Ditto, if the SQL environment variable is set, I'll look it,
     else I'll look at the HTTP header
  */
+ func getConnectionString(conninfo string) string {
+	 v := []string {"database", "host", "user", "port", "passwd" }
+	 r := []string{}
 
+	 for _, vv := range v {
+		 r = append(r, secret(conninfo+"/"+vv))
+	 }
+
+	 dci := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s", r[2], r[4], r[1], r[3], r[0])
+	 return dci
+ }
 func handleSQLCmd(_ context.Context, payload events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	// fmt.Printf( "payload: %+v\n", payload)
@@ -91,14 +101,7 @@ func handleSQLCmd(_ context.Context, payload events.APIGatewayProxyRequest) (eve
 	}
 
 
-	v := []string {"database", "host", "user", "port", "passwd" }
-	r := []string{}
-
-	for _, vv := range v {
-		r = append(r, secret(conninfo+"/"+vv))
-	}
-
-	dci := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s", r[2], r[4], r[1], r[3], r[0])
+	dci := getConnectionString(conninfo)
 
 	// now we set up for pgx
 	var notices []string
